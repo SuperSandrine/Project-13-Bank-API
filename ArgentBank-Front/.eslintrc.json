@@ -22,6 +22,7 @@
         "semi": ["error", "always"],
         // This rule enforces consistent use of semicolons.
         // https://eslint.org/docs/latest/rules/semi
-        "indent": ["error", 2]
+        "indent": ["error", 2],
+        "react/react-in-jsx-scope":0
       }
 }
