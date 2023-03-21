@@ -8,8 +8,8 @@ assignees: ''
 
 A user should be able to:
 
-- [ ] Navigate to the home page (`/`)
-- [ ] See all placeholder data from mockup
+- [X] Navigate to the home page (`/`)
+- [X] See all placeholder data from mockup
 
 For more information on accessing the design assets, see the [Design Assets section in the README](https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API#design-assets).
 
@@ -25,7 +25,7 @@ assignees: ''
 
 A user should be able to:
 
-- [ ] Navigate to the login page (`/login`)
+- [X] Navigate to the login page (`/login`)
 - [ ] Fill out credentials
 - [ ] Login to the back-end API with JWT tokens for authentication
 - [ ] Successfully navigate to a profile page (`/profile`)

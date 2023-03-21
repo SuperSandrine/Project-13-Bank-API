@@ -1,8 +1,12 @@
-import React from 'react';
 import propTypes from 'prop-types';
+import { MainButtonStyled } from './MainButton.styled';
 
 const MainButton = (props) => {
-  return <div></div>;
+  return (
+    <MainButtonStyled className="sign-in-button" {...props}>
+      {props.children}
+    </MainButtonStyled>
+  );
 };
 
 MainButton.propTypes = {};
