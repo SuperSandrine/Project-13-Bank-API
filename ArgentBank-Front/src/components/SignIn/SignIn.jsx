@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useEffect, useRef, useState, useContext } from 'react';
 import MainButton from '../../components/MainButton/MainButton';
 import axios from 'axios';
@@ -23,38 +24,59 @@ const SignIn = () => {
     const emailError = document.querySelector('.email.error');
     const passwordError = document.querySelector('.password.error');
 
-    try {
-      const response = await axios.post(
-        'http://localhost:3001/api/V1/user/login',
-        JSON.stringify({ email, password }),
-        {
-          headers: { 'Content-Type': 'application/json' },
-          withCredentials: true,
-        }
-      );
-      // avec axios pas besoin de vérifier sir la reponse est ok comme avec fetch
-      console.log('rpéonse de asios', JSON.stringify(response?.data));
-      console.log('rpéonse de asios tte la réponse', JSON.stringify(response));
-      const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.roles;
-      setAuth({ email, password, roles, accessToken });
+    const params = {
+      method: 'POST',
+      headers: { Accept: 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:3001' },
+      mode: 'cors',
+      cache: 'default',
+    };
+    fetch('http://localhost:3001/api/V1/user/login', params, {
+      "email":"tony@stark.com","password":"password123"}).then((raw) =>
+      raw
+        .json()
+        .then((data) => ({
+          status: raw.status,
+          data: data,
+        }))
+        .then((response) => {
+          //action(response);
+          console.log('voici la réponse', response);
+        })
+    );
 
-      setEmail('');
-      setPassword('');
-      setSuccess(true);
-    } catch (err) {
-      if (!err?.response) {
-        setErrMsg('no server response');
-        console.log("qu'aije?", err, err.response);
-      } else if (err.response?.status === 400) {
-        setErrMsg('missing username or password');
-      } else if (err.response?.status === 401) {
-        setErrMsg('Unauthorizes');
-      } else {
-        setErrMsg('Login Failed');
-      }
-      errRef.current.focus();
-    }
+    // try {
+    //   const response = await axios.post(
+    //     'http://localhost:3001/api/V1/user/login',
+    //     JSON.stringify({ email, password }),
+    //     {
+    //       headers: { 'Content-Type': 'application/json' },
+    //       withCredentials: true,
+    //     }
+    //   );
+    //   // avec axios pas besoin de vérifier sir la reponse est ok comme avec fetch
+    //   console.log('rpéonse de asios', JSON.stringify(response?.data));
+    //   console.log('rpéonse de asios tte la réponse', JSON.stringify(response));
+    //   const accessToken = response?.data?.accessToken;
+    //   const roles = response?.data?.roles;
+    //   setAuth({ email, password, roles, accessToken });
+
+    //   setEmail('');
+    //   setPassword('');
+    //   setSuccess(true);
+    // } catch (err) {
+    //   if (!err?.response) {
+    //     setErrMsg('no server response');
+    //     console.log("qu'aije?", err, err.response);
+    //   } else if (err.response?.status === 400) {
+    //     setErrMsg('missing username or password');
+    //   } else if (err.response?.status === 401) {
+    //     setErrMsg('Unauthorizes');
+    //   } else {
+    //     setErrMsg('Login Failed');
+    //   }
+    //   errRef.current.focus();
+    // }
 
     // axios({
     //   method: 'post',

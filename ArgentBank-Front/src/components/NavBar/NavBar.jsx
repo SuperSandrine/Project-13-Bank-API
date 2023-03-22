@@ -26,8 +26,9 @@ const NavBar = (props) => {
   );
 };
 
+// OK : TOUN FRANCOIS: c'est quoi sr-only, screen reader only, comment c'est exploité? c'est du vieux css. mauvaise pratique à modifier
+// TODO: supprimer les sronly et proposer qqchose de plus adapter à l'accessibilité d'aujourdhui
 
-// TOUN FRANCOIS: c'est quoi sr-only
 NavBar.propTypes = {};
 
 export default NavBar;

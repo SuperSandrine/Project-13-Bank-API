@@ -60,3 +60,5 @@ export const StyledMain = styled.main`
     }
   }
 `;
+// TODO: revoir la structure des styled component
+// TOUN: il n'y a pas d'intéret à avoir des classname avec des styled component car ça fait redite. ça complexifie la maintenance et ça va pas straight forward au sujet

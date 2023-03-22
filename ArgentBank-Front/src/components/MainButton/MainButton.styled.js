@@ -1,4 +1,5 @@
-// TOUN Francois: pourquoi des fois c'est jsx, et des fois c'est js ?
+// OK TOUN Francois: pourquoi des fois c'est jsx, et des fois c'est js ?, ça marche avec les deux, toutefois jsx va présenter une réponse légèrement plus rapide (ce sont des choses qu'on peut étudier)
+
 import styled from 'styled-components';
 
 export const MainButtonStyled = styled.button`
