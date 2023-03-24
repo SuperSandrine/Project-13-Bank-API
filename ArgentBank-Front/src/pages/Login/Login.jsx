@@ -5,7 +5,7 @@ import Footer from '../../components/Footer/Footer';
 import { LoginStyledMain } from './Login.styled';
 import SignIn from '../../components/SignIn/SignIn';
 
-const Login = (props) => {
+const Login = () => {
   return (
     <div className="test">
       <NavBar />
@@ -16,8 +16,6 @@ const Login = (props) => {
     </div>
   );
 };
-
-Login.propTypes = {};
 
 export default Login;
 // TODO Francois: est)ce qu'il faut faire des composants pour les différents éléments du form?

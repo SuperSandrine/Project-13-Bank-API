@@ -5,6 +5,8 @@ import App from './App';
 import ErrorPage from './pages/Error/ErrorPage';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
+import Profile from './pages/Profile/Profile';
+import Transactions from './pages/Transactions/Transactions';
 
 const Router = createBrowserRouter([
   {
@@ -20,6 +22,16 @@ const Router = createBrowserRouter([
   {
     path: '/login',
     element: <Login />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/profile',
+    element: <Profile />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/transactions',
+    element: <Transactions />,
     errorElement: <ErrorPage />,
   },
   {
