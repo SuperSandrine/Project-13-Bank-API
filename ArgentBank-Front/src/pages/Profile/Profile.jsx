@@ -4,6 +4,8 @@ import NavBar from '../../components/NavBar/NavBar';
 import { LoginStyledMain } from '../Login/Login.styled';
 import { useSelector, useDispatch } from 'react-redux';
 
+// onclick on button signout, terminateUser
+
 const Profile = () => {
   const originalUser = useSelector((state) => state.user);
   console.log('originalUser', originalUser);
@@ -12,7 +14,7 @@ const Profile = () => {
       <div className="test">
         <NavBar />
         <LoginStyledMain className="main bg-dark">
-          la pagge profile
+          <h1>la page profile</h1>
         </LoginStyledMain>
         <Footer />
       </div>

@@ -4,13 +4,14 @@ import NavBar from '../../components/NavBar/NavBar';
 import Footer from '../../components/Footer/Footer';
 import { LoginStyledMain } from './Login.styled';
 import SignIn from '../../components/SignIn/SignIn';
+import SignIn2 from '../../components/SignIn/SignIn2';
 
 const Login = () => {
   return (
     <div className="test">
       <NavBar />
       <LoginStyledMain className="main bg-dark">
-        <SignIn />
+        <SignIn2 />
       </LoginStyledMain>
       <Footer />
     </div>

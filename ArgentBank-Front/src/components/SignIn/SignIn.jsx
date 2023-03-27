@@ -7,7 +7,17 @@ import { json } from 'react-router-dom';
 import {useSelector, useDispatch} from "react-redux";
 import { redirect } from 'react-router-dom';
 
+import { getUserError, getUserStatus, fetchUserData } from '../../redux/redux';
+
 const SignIn = () => {
+  const dispatch = useDispatch();
+  const userStatus = useSelector(getUserStatus);
+  const userError = useSelector(getUserError);
+
+
+
+
+
   //const { setAuth } = useContext(AuthContext);
   const originalUser =  useSelector(state => state.user);
   const errRef = useRef();
@@ -23,7 +33,29 @@ const SignIn = () => {
     setErrMsg('');
   }, [email, password]);
 
-  const dispatch = useDispatch();
+  useEffect(()=>{
+    if (userStatus === 'idle'){
+      dispatch(fetchUserData());
+    }
+  },[userStatus, dispatch]);
+
+  let content;
+  if (userStatus === 'loading') {
+    content = <p>"Loading..."</p>;
+  } else if (userStatus === 'succeeded') {
+    content = <p>"ça a marché, mais ques dois-je faire</p>;
+  } else if (userStatus === 'failed') {
+    content = <p>{error}</p>;
+  }
+
+  //     return (
+  //         <section>
+  //             <h2>Posts</h2>
+  //             {content}
+  //         </section>
+  //     )
+  // }
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -55,6 +87,7 @@ const SignIn = () => {
       setEmail('');
       setPassword('');
       setSuccess(true);
+      localStorage.setItem('token', accessToken);
       
     } catch (err) {
       if (!err?.response) {
