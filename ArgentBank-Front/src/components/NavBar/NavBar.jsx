@@ -5,8 +5,19 @@ import PropTypes from 'prop-types';
 import logo from './../../assets/img/argentBankLogo.png';
 
 import { StyledNav } from './NavBar.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { terminateUser } from '../../redux/userSlice';
 
-const NavBar = (props) => {
+const handleSignOut = (e) => {
+  const dispatch = useDispatch();
+  e.preventDefault();
+  dispatch(terminateUser());
+};
+
+const NavBar = () => {
+  const originalState = useSelector((state) => state);
+  console.log(originalState.user.status);
+
   return (
     <StyledNav className="main-nav">
       <Link className="main-nav-logo" to="/">
@@ -17,11 +28,24 @@ const NavBar = (props) => {
         />
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
-      <div>
-        <Link className="main-nav-item" to="/login">
-          <i className="fa fa-user-circle"></i>Sign In
-        </Link>
-      </div>
+
+      {originalState?.user?.email ? (
+        <div>
+          <Link className="main-nav-item" to="/profile" >
+            <i className="fa fa-user-circle"></i>Nom dynamique à venir
+          </Link>
+          {/* // mettre une action onclick sur la NavBar */}
+          <Link className="main-nav-item" to="/" onClick={handleSignOut}>
+            <i className="fa fa-sign-out"></i>Sign Out
+          </Link>
+        </div>
+      ) : (
+        <div>
+          <Link className="main-nav-item" to="/login">
+            <i className="fa fa-user-circle"></i>Sign In
+          </Link>
+        </div>
+      )}
     </StyledNav>
   );
 };

@@ -1,8 +1,4 @@
-import {
-  createAsyncThunk,
-  createSlice,
-  miniSerializeError,
-} from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const loginUrl = 'http://localhost:3001/api/V1/user/login';
@@ -73,22 +69,22 @@ const userSlice = createSlice({
   name: 'user',
   initialState: initialStateOfUser,
   reducers: {
-    initialiseUser: (state, action) => {
-      //{type:"user/initialise", payload: "les infos de l'utilisateur reçu de l'API"} // dans mon état actuel j'ai envi d'ajouter les données de l'utilisateur
-      console.log('dans initialise, actions', action);
-      console.log('dans initialise, state', state);
+    // initialiseUser: (state, action) => {
+    //   //{type:"user/initialise", payload: "les infos de l'utilisateur reçu de l'API"} // dans mon état actuel j'ai envi d'ajouter les données de l'utilisateur
+    //   console.log('dans initialise, actions', action);
+    //   console.log('dans initialise, state', state);
 
-      const initialisation = {
-        id: 1,
-        //email: action.payload.email,
-        token: action.payload.token,
-      };
-      //state.fill(initialisation);
-      state.push(initialisation);
+    //   const initialisation = {
+    //     id: 1,
+    //     //email: action.payload.email,
+    //     token: action.payload.token,
+    //   };
+    //   //state.fill(initialisation);
+    //   state.push(initialisation);
 
-      return state;
-    },
-    terminateUser: (state, action) => {
+    //   return state;
+    // },
+    terminateUser: (state) => {
       //{type:"user/termination", payload: 1(identifiant)}
       state = initialStateOfUser;
       return state;
