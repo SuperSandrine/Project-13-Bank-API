@@ -5,7 +5,10 @@ import userDetailsReducer from './userDetailsSlice';
 const customizedMiddleWare = (getDefaultMiddleware) => {
   return getDefaultMiddleware({
     serializableCheck: {
-      ignoredActions: ['user/getLoggedUser/fulfilled'],
+      ignoredActions: [
+        'user/getLoggedUser/fulfilled',
+        'user/getUserDetails/fulfilled',
+      ],
       ignoredPaths: ['payload.headers'],
     },
   });

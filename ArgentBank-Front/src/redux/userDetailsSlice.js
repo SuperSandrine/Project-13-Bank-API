@@ -6,7 +6,7 @@ const loginUrl = 'http://localhost:3001/api/V1/user/profile';
 const initialStateOfUserDetails = {
   statusD: 'idle', // 'idle'|'pending'|'succeeded'|'failed'
   errorD: null,
-  firsrName: null,
+  firstName: null,
   lastName: null,
   created: null,
   updated: null,
@@ -15,10 +15,11 @@ const initialStateOfUserDetails = {
 
 export const getUserDetails = createAsyncThunk(
   'user/getUserDetails', // le type creator
-  async (userCredentials, tokens) => {
+  async (userCredentials) => {
     const { keyToken, body } = userCredentials;
-    console.log('tkenavant try', keyToken);
-    console.log('tkenavant try body', body);
+    console.log('token avant try', keyToken);
+    console.log('body avant try ', body);
+    // TOUN FRANCOIS? pourquoi est-ce que il faut le bosy alors que sur postman il n'est pas necessaire?
     try {
       const response = await axios.post(loginUrl, body, {
         headers: { Authorization: `Bearer ${keyToken}` },
@@ -48,11 +49,18 @@ const userDetailsSlice = createSlice({
     },
     [getUserDetails.fulfilled]: (state, action) => {
       //console.log('ceci est action', action);
-      const {firsrName, lastName, created, updated, id} = action.payload.data.body
-      state.status = 'succeeded';
-      state.firsrName = firsrName;
-      state.lastName =created;
-      state.upadated = updated;
+      const { firstName, lastName, createdAt, updatedAt, id } =
+        action.payload.data.body;
+      state.statusD = 'succeeded';
+      // state.firstName = action.payload.data.body.firstName;
+      // state.lastName = action.payload.data.body.lastName;
+      // state.created = action.payload.data.body.createdAt;
+      // state.updated = action.payload.data.body.updatedAt;
+      // state.id = action.payload.data.body.id;
+      state.firstName = firstName;
+      state.lastName = lastName;
+      state.created = createdAt;
+      state.updated = updatedAt;
       state.id = id;
     },
     [getUserDetails.rejected]: (state, action) => {

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 export const MainButtonStyled = styled.button`
   display: block;
-  width: 100%;
   padding: 8px;
   font-size: 1.1rem;
   font-weight: bold;
@@ -12,4 +11,18 @@ export const MainButtonStyled = styled.button`
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
+  margin: auto;
+  cursor: pointer;
+  .large-button {
+    width: 100%;
+  }
+  .transaction-button {
+    width: 100%;
+    flex: 1, 1, 0%;
+  }
+  @media (min-width: 720px) {
+    .transaction-button {
+      width: 200px;
+    }
+  }
 `;

@@ -72,7 +72,7 @@ const SignIn = () => {
     if (resp.payload.data.status === 400) {
       setErrMsg('missing username or password');
     } else if (resp.payload.data.status === 401) {
-      setErrMsg('Unauthorizes');
+      setErrMsg('Unauthorized');
     } else if (resp.payload.data.status === 200){
       setErrMsg('Login succeeded');
       setSuccess(true);

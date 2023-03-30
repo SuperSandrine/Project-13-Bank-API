@@ -43,4 +43,8 @@ export const LoginStyledMain = styled.main`
       margin-left: 0.25rem;
     }
   }
+  .header {
+    color: #fff;
+    margin-bottom: 2rem;
+  }
 `;

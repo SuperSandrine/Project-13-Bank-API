@@ -29,10 +29,10 @@ const NavBar = () => {
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
 
-      {originalState?.user?.email ? (
+      {originalState?.userDetails?.firstName ? (
         <div>
-          <Link className="main-nav-item" to="/profile" >
-            <i className="fa fa-user-circle"></i>Nom dynamique à venir
+          <Link className="main-nav-item" to="/profile">
+            <i className="fa fa-user-circle"></i> {originalState.userDetails.firstName}
           </Link>
           {/* // mettre une action onclick sur la NavBar */}
           <Link className="main-nav-item" to="/" onClick={handleSignOut}>
