@@ -1,6 +1,14 @@
 import React from 'react';
-import { AccountCardStyledSection } from './AccountCard.styled';
+import {
+  AccountCardStyledSection,
+  AccountCardStyledTitle,
+  AccountCardStyledAmount,
+  AccountCardStyledDescription, 
+  AccountCardStyledContainer,
+} from './AccountCard.styled';
+//import { MainButtonStyled } from '../MainButton/MainButton.styled';
 import MainButton from '../MainButton/MainButton';
+import { useSelector } from 'react-redux';
 
 const accountsContent = [
   {
@@ -21,24 +29,31 @@ const accountsContent = [
 ];
 
 const AccountCard = () => {
+  const globalState = useSelector((state) => state);
   return (
     <>
-      {accountsContent.map((account, i) => (
-        <AccountCardStyledSection className="account" key={i}>
-          <div className="account-content-wrapper">
-            <h3 className="account-title">{account.title}</h3>
-            <p className="account-amount">{account.amount}</p>
-            <p className="account-amount-description">{account.description}</p>
-          </div>
-          <div className="  cta">
-            <MainButton className="transaction-button">
-              View transactions
-            </MainButton>
-          </div>
-        </AccountCardStyledSection>
-      ))}
+      {globalState?.user?.email &&
+        accountsContent.map((account, i) => (
+          <AccountCardStyledSection key={i}>
+            <AccountCardStyledContainer>
+              <AccountCardStyledTitle>{account.title}</AccountCardStyledTitle>
+              <AccountCardStyledAmount>
+                {account.amount}
+              </AccountCardStyledAmount>
+              <AccountCardStyledDescription>
+                {account.description}
+              </AccountCardStyledDescription>
+            </AccountCardStyledContainer>
+            <AccountCardStyledContainer className="cta">
+              <MainButton className="transaction-button">
+                View transactions
+              </MainButton>
+            </AccountCardStyledContainer>
+          </AccountCardStyledSection>
+        ))}
     </>
   );
 };
+// FRANcOIS pourquoi ça ne prends pas les classnames de mainButton, mais qu eça prends les classname de AccountCardStylesSection
 
 export default AccountCard;

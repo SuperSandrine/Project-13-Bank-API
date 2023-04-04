@@ -15,39 +15,8 @@ export const AccountCardStyledSection = styled.section`
   margin-bottom: 2rem;
   margin-top: 2rem;
 
-  .account-amount {
-    margin: 0;
-    font-size: 2.5rem;
-    font-weight: bold;
-  }
-
-  .account-amount-description {
-    margin: 0;
-  }
-
-  .account-title {
-    margin: 0;
-    padding: 0;
-    font-size: 1rem;
-    font-weight: normal;
-  }
-
-  .account-content-wrapper,
-  .cta {
-    width: 100%;
-    //flex: 1, 1, 0%;
-  }
-
   .transaction-button {
-    //   display: block;
     width: 100%;
-    //   padding: 8px;
-    //   font-size: 1.1rem;
-    //   font-weight: bold;
-    //   margin-top: 1rem;
-    //   border-color: #00bc77;
-    //   background-color: #00bc77;
-    //   color: #fff;
   }
 
   @media (min-width: 720px) {
@@ -61,4 +30,25 @@ export const AccountCardStyledSection = styled.section`
       width: 200px;
     }
   }
+`;
+export const AccountCardStyledContainer = styled.div`
+  width: 100%;
+  //flex: 1, 1, 0%;
+`;
+
+export const AccountCardStyledTitle = styled.h3`
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: normal;
+`;
+
+export const AccountCardStyledAmount = styled.p`
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+`;
+
+export const AccountCardStyledDescription = styled.p`
+  margin: 0;
 `;

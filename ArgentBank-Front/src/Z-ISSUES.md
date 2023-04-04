@@ -102,4 +102,5 @@ AUTRE
 -----
 - [ ] propTypes
 - [ ] jsdoc
+- [ ] remember me
 - [ ] 

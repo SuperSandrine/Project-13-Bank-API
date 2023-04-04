@@ -1,6 +1,6 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import userReducer from './userSlice';
-import userDetailsReducer from './userDetailsSlice';
+import userDetailsReducer from './Reducers/userDetailsSlice';
 
 const customizedMiddleWare = (getDefaultMiddleware) => {
   return getDefaultMiddleware({
@@ -8,6 +8,7 @@ const customizedMiddleWare = (getDefaultMiddleware) => {
       ignoredActions: [
         'user/getLoggedUser/fulfilled',
         'user/getUserDetails/fulfilled',
+        'user/updateUserDetails/fulfilled',
       ],
       ignoredPaths: ['payload.headers'],
     },

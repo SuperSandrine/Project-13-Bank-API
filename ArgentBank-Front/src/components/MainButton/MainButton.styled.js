@@ -23,8 +23,8 @@ export const MainButtonStyled = styled.button`
   }
   .transaction-button {
     width: 100%;
-    flex: 1, 1, 0%;
   }
+
   @media (min-width: 720px) {
     .transaction-button {
       width: 200px;
