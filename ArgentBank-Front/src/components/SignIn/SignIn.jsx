@@ -1,25 +1,22 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect, useRef, useState, useContext } from 'react';
-import MainButton from '../../components/MainButton/MainButton';
-import axios from 'axios';
-import AuthContext from '../../context/AuthProvider';
-import { json } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
 import {useSelector, useDispatch} from "react-redux";
-import { redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+//import { getLoggedUser } from '../../redux/userSlice';
+import { getLoggedUser } from '../../redux/Actions/userActions';
 
-import { getUserError, getUserStatus, fetchUserData } from '../../redux/redux';
+import { SignInStyledSection, SignInStyledIcon, SignInStyledInputContainer } from './SignIn.styled';
+import { MainButtonStyled } from '../MainButton/MainButton.styled';
 
 const SignIn = () => {
   const dispatch = useDispatch();
-  const userStatus = useSelector(getUserStatus);
-  const userError = useSelector(getUserError);
+  const originalState =  useSelector(state => state);
+  //console.log("le state", originalState);
+  //console.log("le state2", originalState.user.isLoading);
 
+  //const {userLogInData, isLoading} = useSelector((state)=> state.user);
+  //console.log("original user ou à quoi ressemble le state.isLoading", originalState.isLoading);
 
-
-
-
-  //const { setAuth } = useContext(AuthContext);
-  const originalUser =  useSelector(state => state.user);
   const errRef = useRef();
 
   const [email, setEmail] = useState('');
@@ -27,26 +24,20 @@ const SignIn = () => {
   const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
 
-  console.log(originalUser);
+
+
+  //console.log(originalUser);
  
   useEffect(() => {
     setErrMsg('');
   }, [email, password]);
 
-  useEffect(()=>{
-    if (userStatus === 'idle'){
-      dispatch(fetchUserData());
-    }
-  },[userStatus, dispatch]);
+  //useEffect(()=> {
+  //  dispatch(getUserLogIn());
+  //},[]); // sans dépendance, elle sera appeler q'unr seule fois
 
-  let content;
-  if (userStatus === 'loading') {
-    content = <p>"Loading..."</p>;
-  } else if (userStatus === 'succeeded') {
-    content = <p>"ça a marché, mais ques dois-je faire</p>;
-  } else if (userStatus === 'failed') {
-    content = <p>{error}</p>;
-  }
+
+  
 
   //     return (
   //         <section>
@@ -59,98 +50,51 @@ const SignIn = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log('handlelogin mdp et email', password, email);
+    console.log('handlelogin mdp et email', password, email); //ok
+    //const userFromAxios = {email:email, password:password}; 
+    //try{
+    const resp = await dispatch(getLoggedUser({email:email, password:password}));
+    //const resp =  await dispatch({type:'user/getLoggedUser', payload:{ email: 'tony@stark.com', password: 'password123'} });
+    //console.log("la réponse de la requete", all);
+
+    //dispatch({ type: "user/initialiseUser", payload : userFromAxios });
+
+    //setSuccess(true);
+    //localStorage.setItem('token', accessToken);
+    //console.log("la réponse renvoyé de axios", resp.payload.data);
+    console.log("la réponse complète renvoyé de axios", resp);
     
+    // TODO, FRANCOIS: comment récupérer le statut d'erreur pour afficher des messages personnalisés?
 
-    try {
-      const response = await axios.post(
-        'http://localhost:3001/api/V1/user/login',
-        ({ email, password }),
-        {
-          headers: { 'Content-Type': 'application/json', 
-          //'Access-Control-Allow-Origin':'http://localhost:3001' 
-          },
-          //withCredentials: true,
-        }
-      );
-      // avec axios pas besoin de vérifier si la reponse est ok comme avec fetch
-      console.log('réponse de axios token', response.data.body.token);
-      // TOUN: comment ça s'appelle ce truc de bla.suite.text, un chemin?, 
-      console.log('réponse de axios', response);
 
-      const accessToken = response.data.body.token; // L'opérateur ?. est appelé opérateur de nullish coalescing et permet de vérifier si la propriété data de l'objet response existe avant d'essayer de l'afficher. Si elle n'existe pas, il ne se passe rien et aucun message d'erreur ne s'affiche.
-      console.log("accessToken s'il existe", accessToken);
-      // là faudrait qu'on prenne la data et qu'on change le redux général
-      const userFromAxios = {email:email, token:accessToken};
-      dispatch({ type: "user/initialiseUser", payload : userFromAxios });
-      //setAuth({ email, password, accessToken });
-      setEmail('');
-      setPassword('');
+    //getion de l'affichage des erreurs à l'utilisateur
+    // if (!err.response) {
+    //   setErrMsg('no server response');
+    //   console.log("qu'aije err?", err);
+    //   console.log("qu'aije 2,", err.response);
+    //} else 
+    if (resp.payload.data.status === 400) {
+      setErrMsg('missing username or password');
+    } else if (resp.payload.data.status === 401) {
+      setErrMsg('Unauthorized');
+    } else if (resp.payload.data.status === 200){
+      setErrMsg('Login succeeded');
       setSuccess(true);
-      localStorage.setItem('token', accessToken);
-      
-    } catch (err) {
-      if (!err?.response) {
-        setErrMsg('no server response');
-        console.log("qu'aije?", err, err.response);
-      } else if (err.response?.status === 400) {
-        setErrMsg('missing username or password');
-      } else if (err.response?.status === 401) {
-        setErrMsg('Unauthorizes');
-      } else {
-        setErrMsg('Login Failed');
-      }
-      errRef.current.focus();
+
+    } else {
+      setErrMsg('Login Failed');
     }
+    errRef.current.focus();
+    
+  
 
 
-    // ce que m'a fait écrire françois
-    // const params = {
-    //   method: 'POST',
-    //   headers: { Accept: 'application/json',
-    //     'Access-Control-Allow-Origin': 'http://localhost:3001' },
-    //   mode: 'cors',
-    //   cache: 'default',
-    // };
-    // fetch('http://localhost:3001/api/V1/user/login', params, {
-    //   "email":"tony@stark.com","password":"password123"}).then((raw) =>
-    //   raw
-    //     .json()
-    //     .then((data) => ({
-    //       status: raw.status,
-    //       data: data,
-    //     }))
-    //     .then((response) => {
-    //       //action(response);
-    //       console.log('voici la réponse', response);
-    //     })
-    // );
-
-    // le tuto de dave avec un useContext
-    // try {
-    //   const response = await axios.post(
-    //     'http://localhost:3001/api/V1/user/login',
-    //     ({ email, password }),
-    //     {
-    //       headers: { 'Content-Type': 'application/json' },
-    //       //withCredentials: true,
-    //     }
-    //   );
-    //   // avec axios pas besoin de vérifier si la reponse est ok comme avec fetch
-    //   console.log('rpéonse de asios', JSON.stringify(response?.data));
-    //   //console.log('rpéonse de asios tte la réponse', JSON.stringify(response));
-    //   const accessToken = response?.data?.accessToken;
-    //   const roles = response?.data?.roles;
-    //   setAuth({ email, password, roles, accessToken });
-
-    //   setEmail('');
-    //   setPassword('');
-    //   setSuccess(true);
-    //   //console.log("qu'est ce que set auth", setAuth)
-    // } catch (err) {
-    //   if (!err?.response) {
+      
+    // //} catch (err) {
+    //   if (!err.response) {
     //     setErrMsg('no server response');
-    //     console.log("qu'aije?", err, err.response);
+    //     console.log("qu'aije err?", err);
+    //     console.log("qu'aije 2,", err.response);
     //   } else if (err.response?.status === 400) {
     //     setErrMsg('missing username or password');
     //   } else if (err.response?.status === 401) {
@@ -160,66 +104,59 @@ const SignIn = () => {
     //   }
     //   errRef.current.focus();
     // }
+    // } catch(error){
+    //   console.log("erreur du try/catch", error);
+    // };
+    return resp.payload.data;
 
-    //from scratch
-    // Requests can be made by passing the relevant config to axios. https://axios-http.com/docs/api_intro 
-    // const emailError = document.querySelector('.email.error');
-    // const passwordError = document.querySelector('.password.error');
-    //   axios({
-    //     method: 'post',
-    //     url: `http://localhost:3001/api/v1/user/login`,
-    //     // Selon docs Axios, les headers sont générés automatiquement
-    //     // headers: { Accept: 'application/json', 'Access-Control-Allow-Origin': 'http://localhost:3001' },
-    //     // mode: 'cors',
-    //     // cache: 'default',
-    //     // withCredentials: true,
-    //     // TOUN FRANCOIS, en enlevant le with credentials, j'ai une réponse correcte, est-ce que le problème de CORS peut venir de là?
-    //     data: {
-    //       email,
-    //       password,
-    //     },
-    //   })
-    //     .then((res) => {
-    //       if (res.data.errors) {
-    //         emailError.innerHTML = res.data.errors.email;
-    //         passwordError.innerHTML = res.data.errors.password;
-    //       } else {
-    //         console.log(res), // config :  {transitional: {…}, adapter: Array(2), transformRequest: Array(1), transformResponse: Array(1), timeout: 0, …}
-    //         //data : {status: 200, message: 'User successfully logged in', body: {…}}
-    //         // headers : AxiosHeaders {content-length: '245', content-type: 'application/json; charset=utf-8'}
-    //         //request : XMLHttpRequest {onreadystatechange: null, readyState: 4, timeout: 0, withCredentials: false, upload: XMLHttpRequestUpload, …}
-    //         // status : 200
-    //         // statusText : "OK"
-    //         // [[Prototype]] : Object
-    //         alert("tu es dans le else, donc apriori t'es loggué", res );
-          
-    //         //window.location = '/'; // on s'est fait émettre un token et on est considéré comme connecté
-    //       }
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-  
   };
 
-  return (
-    <>
-      {success ? (  
-        //redirect(`/home`)
-        <section className="sign-in-content">
-          {/* <p ref={errRef} className={errMsg ? 'errmsg' : 'offscreen'}> */}
-          <i className="fa fa-user-circle sign-in-icon"></i>
-          <h1>You are logged in</h1>
-          <MainButton><a href="./profile">Profile page</a></MainButton>
-        </section>
-      ) : (
-        <section className="sign-in-content">
+
+
+
+  //Cela indique que le state initial de votre application est un objet vide, car vous n'avez pas encore dispatché d'action pour mettre à jour le state. Ainsi, originalUser est un objet vide {}. Cela est conforme à ce que l'on pourrait attendre lorsqu'on utilise Redux, car le state est initialisé au moment de la création du store et ne contient pas encore de données. Il faut d'abord dispatché une action qui mettra à jour le state pour que originalUser contienne des données.
+
+
+
+
+
+
+  // if(success && originalState.user.isLoading){
+  //   console.log("dans affichage", originalState);
+  //   return (
+  //     <div>
+  //       <h1>Loading...</h1>
+  //     </div>
+  //   );
+  // } else 
+
+  // if(success && !originalState.user.isLoading){
+  //   console.log("dans affichage", originalState);    
+  //   return (
+  //     <div>
+  //       <h1>Bienvenu...</h1>
+  //     </div>
+  //   );
+  // } else {
+
+  // si c'est ok, afficher le message de succès pour un délait de 3 seconde et rediriger vers la page de profile.
+  // Est-ce qu'il y a moyen d'exploiter le state error? à réfléchir !!!
+
+  if(success && originalState?.user?.status ){
+    //console.log("je cehrche", originalState);
+    //    redirect("/profile"); // TOUN FRANCOIS: pourquoi ça marche pas?
+    return (<Navigate to="/profile"/>);
+  }else{
+    return (
+      <>
+      (
+        <SignInStyledSection>
           {/* <p ref={errRef} className={errMsg ? 'errmsg' : 'offscreen'}> */}
           <p ref={errRef}>{errMsg}</p>
-          <i className="fa fa-user-circle sign-in-icon"></i>
+          <SignInStyledIcon className="fa fa-user-circle "></SignInStyledIcon>
           <h1>Sign In</h1>
           <form action="" onSubmit={handleLogin} id="sign-in-form">
-            <div className="input-wrapper">
+            <SignInStyledInputContainer>
               <label htmlFor="email">Email</label>
               <input
                 type="text"
@@ -227,22 +164,22 @@ const SignIn = () => {
                 autoComplete="off"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
-                //required
+              //required
               />
               <div className="email error"></div>
-            </div>
+            </SignInStyledInputContainer>
 
-            <div className="input-wrapper">
+            <SignInStyledInputContainer>
               <label htmlFor="password">Password</label>
               <input
                 type="password"
                 id="password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
-                //required
+              //required
               />
               <div className="password error"></div>
-            </div>
+            </SignInStyledInputContainer>
 
             <div className="input-remember">
               <input type="checkbox" id="remember-me" />
@@ -251,16 +188,17 @@ const SignIn = () => {
             {/* <MainButton>Sign In</MainButton> // c'est pas un boutton qu'il faut, c'est un input */}
             {/* <!-- PLACEHOLDER DUE TO STATIC SITE -->
           <a href="./user.html" class="sign-in-button">Sign In</a>
-          <!-- SHOULD BE THE BUTTON BELOW -->
-          <!-- <button class="sign-in-button">Sign In</button> -->
-          <!--  --> */}
-            <input type="submit" value="Sign In" className="sign-in-button" />
-            {/* TODO FRANCOIS? j'ai pas fait un bouton mais un input, c'est grave? */}
+          <!-- SHOULD BE THE BUTTON BELOW -->*/}
+            <MainButtonStyled className="large-button" type="submit">Sign In</MainButtonStyled> 
+            {/* <input type="submit" value="Sign In" className="sign-in-button" /> */}
+            {/* TODO : utiliser la className dans le Main Button, regarder comment on tutilise les props dans les styled component */}
+            {/* DONE = TODO FRANCOIS? j'ai pas fait un bouton mais un input, c'est grave?, avant cétait mieux, maintenant y a plus trop d'intérêt à privilégié les input, alors qu'en terme de style les buttons sont plus avantageux */}
           </form>
-        </section>
-      )}
-    </>
-  );
+        </SignInStyledSection>
+      )
+      </>
+    );
+  };
 };
 
 export default SignIn;

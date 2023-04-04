@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { InputStyledDiv } from '../Input/Input.styled';
+import { InputStyledDiv } from './Input.styled';
 import { useEffect } from 'react';
 //import { original } from '@reduxjs/toolkit';
 //import { updateUserDetails } from '../../redux/Reducers/userDetailsSlice';

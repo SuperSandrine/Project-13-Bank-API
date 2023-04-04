@@ -1,5 +1,5 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import userReducer from './userSlice';
+import userReducer from './Reducers/userSlice';
 import userDetailsReducer from './Reducers/userDetailsSlice';
 
 const customizedMiddleWare = (getDefaultMiddleware) => {
