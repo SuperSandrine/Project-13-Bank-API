@@ -60,9 +60,9 @@ assignees: ''
 
 After successfully logging in, a user should be able to:
 
-- [ ] See their profile page
-- [ ] See their first name on the profile page
-- [ ] See placeholder bank account information
+- [X] See their profile page
+- [X] See their first name on the profile page
+- [X] See placeholder bank account information
 
 For more information on accessing the design assets, see the [Design Assets section in the README](https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API#design-assets).
 
@@ -77,7 +77,7 @@ assignees: ''
 
 A user should be able to:
 
-- [ ] Edit their profile (first name and last name). - [ ] This data should be persisted to the database.
+- [X] Edit their profile (first name and last name). - [ ] This data should be persisted to the database.
 
 For more information on accessing the design assets, see the [Design Assets section in the README](https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API#design-assets).
 
@@ -92,7 +92,7 @@ assignees: ''
 
 The React app contains an implementation of Redux for state management that:
 
-- [ ] a store to manage all of the data
+- [X] a store to manage all of the data
 - [ ] action(s) for sending information
 - [ ] reducer(s) for handling application state changes
 

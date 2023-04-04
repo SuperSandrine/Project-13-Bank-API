@@ -23,8 +23,8 @@ const accountsContent = [
 const AccountCard = () => {
   return (
     <>
-      {accountsContent.map((account) => (
-        <AccountCardStyledSection className="account" key="index ">
+      {accountsContent.map((account, i) => (
+        <AccountCardStyledSection className="account" key={i}>
           <div className="account-content-wrapper">
             <h3 className="account-title">{account.title}</h3>
             <p className="account-amount">{account.amount}</p>

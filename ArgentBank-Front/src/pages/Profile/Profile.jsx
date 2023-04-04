@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Footer from '../../components/Footer/Footer';
 import NavBar from '../../components/NavBar/NavBar';
 import { LoginStyledMain } from '../Login/Login.styled';
@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getUserDetails } from '../../redux/userDetailsSlice';
 import MainButton from '../../components/MainButton/MainButton';
 import AccountCard from '../../components/AccountCard/AccountCard';
+import EditName from '../../components/EditName/Editname';
 
 // const getProfileData = async (keyToken) => {
 //   console.log('*********', keyToken);
@@ -22,9 +23,15 @@ const Profile = () => {
   const originalState = useSelector((state) => state);
   const dispatch = useDispatch();
   const [profileData, setProfileData] = useState(null);
+  //const modalEdit = useRef(null);
+  //const names = useRef(null);
+  //const disapear = useRef(null);
+  const [editFormDisplayed, setEditFormDisplayed] = useState(false);
+
   const { firstName, lastName } = originalState.userDetails;
 
   // permet d'utiliser de l'asynchrone dans un composant react
+  // TODO mettre le body dynamique
   useEffect(() => {
     const getProfileData = async () => {
       const token = originalState.user.token;
@@ -43,7 +50,21 @@ const Profile = () => {
   // profileDataResp()
   //console.log('la réponse axios de profile', profileDataResp)
 
-  // on est dans une boucle infinie de pending et 200
+  // quand je clique,
+  // je fais apparaitre le form et
+  // je fais disparaître le bouton
+  const handleEdit = (e) => {
+    e.preventDefault();
+    setEditFormDisplayed(true);
+    //const nouveauPara = EditName;
+    //modalEdit.replaceChild(nouveauPara, ancienPara);
+  };
+
+  const handleCancelClick = (e) => {
+    e.preventDefault();
+    console.log("je ferme la modale");
+    setEditFormDisplayed(false);
+  };
 
   return (
     <div>
@@ -53,9 +74,34 @@ const Profile = () => {
           <h1 className="header">
             Welcome back
             <br />
-            {firstName} {lastName}!
+            {!editFormDisplayed && (
+              <div>
+                <div 
+                //ref={names}
+                >
+                  {' '}
+                  {firstName} {lastName}!
+                </div>
+                <MainButton
+                  //ref={disapear}
+                  className="large-button title"
+                  onClick={handleEdit}
+                >
+                  Edit Name
+                </MainButton>
+              </div>
+            )}
+            {editFormDisplayed && (
+              <div 
+              //ref={modalEdit}
+              >
+                <EditName
+                  open={editFormDisplayed}
+                  func={handleCancelClick}
+                />
+              </div>
+            )}
           </h1>
-          <MainButton className="large-button">Edit Name</MainButton>
           <AccountCard />
         </LoginStyledMain>
         <Footer />
