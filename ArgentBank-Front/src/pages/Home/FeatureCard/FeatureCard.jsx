@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { StyledFeatureDiv } from './FeatureCard.Styled';
 
 const FeatureCard = (props) => {
-  console.log('props dans feature', props.content.id);
+  //console.log('props dans feature', props.content.id);
   const { id, pictureSrc, pictureAlt, title, text } = props.content;
   return (
     <StyledFeatureDiv className="feature-item">

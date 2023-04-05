@@ -28,8 +28,6 @@ const SignIn = () => {
     const resp = await dispatch(getLoggedUser({email:email, password:password}));
     //console.log("la resp dans handleLogin", resp)
 
-
-
     if (resp?.error?.message =="Rejected") {
       //console.log("le message error", resp.payload.data.message || resp.payload.statusText);
       setErrMsg(resp.payload.data.message || "API "+ resp.payload.statusText);

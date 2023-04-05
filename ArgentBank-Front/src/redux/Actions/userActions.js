@@ -15,7 +15,7 @@ export const getLoggedUser = createAsyncThunk(
       );
       return response;
     } catch (err) {
-      console.log('il y a une erreur dans lappel API', err.response);
+      console.log('il y a une erreur dans lappel API Login', err.response);
       return rejectWithValue(err.response);
       // const data = err.response.data;
       // const errStatus = err.response.status;
@@ -24,7 +24,7 @@ export const getLoggedUser = createAsyncThunk(
 
       // FRANCOIS: gestion des erreurs, comment faire pour récupérer les error status text et l'envoyer à mon Signin? Un state dédié dans userSlice?
 
-      
+
       //return rejectWithValue(errorPayload);
       //return err.response.status;
       // if (!err.response) {

@@ -77,7 +77,8 @@ assignees: ''
 
 A user should be able to:
 
-- [X] Edit their profile (first name and last name). - [ ] This data should be persisted to the database.
+- [X] Edit their profile (first name and last name). 
+- [X] This data should be persisted to the database.
 
 For more information on accessing the design assets, see the [Design Assets section in the README](https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API#design-assets).
 
@@ -93,8 +94,10 @@ assignees: ''
 The React app contains an implementation of Redux for state management that:
 
 - [X] a store to manage all of the data
-- [ ] action(s) for sending information
-- [ ] reducer(s) for handling application state changes
+- [X] action(s) for sending information :
+    - les actions sont les getet update
+- [X] reducer(s) for handling application state changes
+    - le reducers c'est plutôt des extras reducers
 
 
 -----

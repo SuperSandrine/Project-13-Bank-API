@@ -16,28 +16,28 @@ const Profile = () => {
   const [editFormDisplayed, setEditFormDisplayed] = useState(false);
   const { firstName, lastName } = originalState.userDetails;
 
+  //_____________________
   // permet d'utiliser de l'asynchrone dans un composant react
   // DONE = TODO mettre le body dynamique
   useEffect(() => {
-    const getProfileData = async () => {
-      const token = originalState.user.token;
-      const body = {
-        email: originalState.user.email,
-        password: originalState.user.password,
+    if (!firstName) {
+      const getProfileData = async () => {
+        console.log('je chasse le profil');
+        const token = originalState.user.token;
+        const body = {
+          email: originalState.user.email,
+          password: originalState.user.password,
+        };
+        const userCredentials = { body, keyToken: token };
+        await dispatch(getUserDetails(userCredentials));
+        //setProfileData(response);
       };
-      const userCredentials = { body, keyToken: token };
-      await dispatch(getUserDetails(userCredentials));
-      //setProfileData(response);
-    };
-    getProfileData();
-  }, []);
-
-  //console.log('état local', profileData);
-  // console.log("here is token", token)
-  // const profileDataResp = async () =>{
-  // await getProfileData(token);}
-  // profileDataResp()
-  //console.log('la réponse axios de profile', profileDataResp)
+      getProfileData();
+    } else {
+      console.log('le profil existe déjà');
+    }
+  }, [firstName, lastName]);
+  // en ajoutant [firstName, lastName] comme dépendance de useEffect, la fonction est appelé quand ces valeurs changent.
 
   // quand je clique,
   // je fais apparaitre le form et
