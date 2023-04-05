@@ -5,7 +5,7 @@ const loginUrl = 'http://localhost:3001/api/V1/user/login';
 
 export const getLoggedUser = createAsyncThunk(
   'user/getLoggedUser', // le type creator
-  async ({ email, password }) => {
+  async ({ email, password }, { rejectWithValue }) => {
     try {
       const response = await axios.post(
         loginUrl,
@@ -16,20 +16,32 @@ export const getLoggedUser = createAsyncThunk(
       return response;
     } catch (err) {
       console.log('il y a une erreur dans lappel API', err.response);
-      return err.response.status;
+      return rejectWithValue(err.response);
+      // const data = err.response.data;
+      // const errStatus = err.response.status;
+      // const errStatusText = err.response.statusText;
+      // return rejectWithValue(data, errStatus, errStatusText);
+
+      // FRANCOIS: gestion des erreurs, comment faire pour récupérer les error status text et l'envoyer à mon Signin? Un state dédié dans userSlice?
+
+      
+      //return rejectWithValue(errorPayload);
+      //return err.response.status;
       // if (!err.response) {
       //   const errString = 'no server response';
-      //   return errString;
+      //   console.log('err string dans action', errString);
+      //   return isRejectedWithValue(errString);
       // } else if (err.response?.status === 400) {
       //   //chainage optionel: si la valeur de response n'est ni nul et undefinied, alors il va chercher la valeur de status
       //   const errString = 'missing username or password';
-      //   return errString;
+      //   console.log('err string dans action', errString);
+      //   return isRejectedWithValue(errString);
       // } else if (err.response?.status === 401) {
       //   const errString = 'Unauthorizes';
-      //   return errString;
+      //   return isRejectedWithValue(errString);
       // } else {
       //   const errString = 'Login Failed';
-      //   return errString;
+      //   return isRejectedWithValue(errString);
       // }
     }
   }

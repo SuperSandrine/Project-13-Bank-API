@@ -54,7 +54,7 @@ const userDetailsSlice = createSlice({
       state.statusUpdate = 'succeeded';
       state.firstName = firstName;
       state.lastName = lastName;
-      state.updated = Date();
+      state.updated = new Date().toISOString();
     },
     [updateUserDetails.rejected]: (state, action) => {
       state.statusUpdate = 'failed :' + action.payload.data.status;

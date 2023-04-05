@@ -3,7 +3,9 @@ import { getLoggedUser } from '../Actions/userActions';
 
 const initialStateOfUser = {
   status: 'idle', // 'idle'|'pending'|'succeeded'|'failed'
-  error: null,
+  errorStatus: null,
+  errorMessage: null,
+  //errorOtherMessage: null,
   email: null,
   password: null,
   token: null,
@@ -24,15 +26,21 @@ const userSlice = createSlice({
       state.status = 'pending';
     },
     [getLoggedUser.fulfilled]: (state, action) => {
-      //console.log('ceci est action', action);
+      console.log('ceci est action', action);
       state.token = action.payload.data.body.token;
       state.status = 'succeeded';
       state.email = action.meta.arg.email;
       state.password = action.meta.arg.password;
+      state.errorStatus = null;
+      state.errorMessage = null;
+      //state.errorOtherMessage = null;
     },
     [getLoggedUser.rejected]: (state, action) => {
+      console.log('ceci est action dans rejected', action);
       state.status = 'failed';
-      state.error = action.payload.error;
+      state.errorStatus = action.payload.status;
+      state.errorMessage = action.payload.message;
+      //state.errorOtherMessage = action.payload.statusText;
     },
   },
 });

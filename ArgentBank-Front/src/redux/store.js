@@ -9,6 +9,7 @@ const customizedMiddleWare = (getDefaultMiddleware) => {
         'user/getLoggedUser/fulfilled',
         'user/getUserDetails/fulfilled',
         'user/updateUserDetails/fulfilled',
+        'user/getLoggedUser/rejected',
       ],
       ignoredPaths: ['payload.headers'],
     },
