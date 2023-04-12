@@ -15,7 +15,7 @@ const SignIn = () => {
   const [password, setPassword] = useState('');
   const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false)
+  const [rememberMe, setRememberMe] = useState(false);
  
   useEffect(() => {
     setErrMsg('');
@@ -23,9 +23,7 @@ const SignIn = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    //console.log('handlelogin mdp et email', password, email); //ok
     const resp = await dispatch(getLoggedUser({email:email, password:password}));
-    //console.log("la resp dans handleLogin", resp)
     if(rememberMe){
       console.log("le RememberMe fait qqchose");
     } else{
@@ -42,7 +40,6 @@ const SignIn = () => {
   };
 
   if(success && originalState?.user?.email ){
-    //console.log("je cehrche", originalState);
     return (<Navigate to="/profile"/>);
   }else{
     return (

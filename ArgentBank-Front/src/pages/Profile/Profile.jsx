@@ -15,7 +15,6 @@ const Profile = () => {
   const [editFormDisplayed, setEditFormDisplayed] = useState(false);
   const { firstName, lastName } = originalState.userDetails;
 
-  //_____________________
   // permet d'utiliser de l'asynchrone dans un composant react
   useEffect(() => {
     if (!firstName) {
@@ -28,14 +27,12 @@ const Profile = () => {
         };
         const userCredentials = { body, keyToken: token };
         await dispatch(getUserDetails(userCredentials));
-        //setProfileData(response);
       };
       getProfileData();
     } else {
       console.log('le profil existe déjà');
     }
   }, [firstName, lastName]);
-  // en ajoutant [firstName, lastName] comme dépendance de useEffect, la fonction est appelé quand ces valeurs changent.
 
   // quand je clique,
   // je fais apparaitre le form et
@@ -46,7 +43,6 @@ const Profile = () => {
   };
   const handleCancelClick = (e) => {
     e.preventDefault();
-    //console.log('je ferme la modale');
     setEditFormDisplayed(false);
   };
 
@@ -55,7 +51,7 @@ const Profile = () => {
       <div className="shape">
         <NavBar />
 
-        <LoginStyledMain >
+        <LoginStyledMain>
           {originalState?.userDetails?.id ? (
             <>
               <LoginStyledH1>

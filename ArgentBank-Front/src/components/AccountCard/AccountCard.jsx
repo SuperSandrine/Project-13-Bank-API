@@ -3,7 +3,7 @@ import {
   AccountCardStyledSection,
   AccountCardStyledTitle,
   AccountCardStyledAmount,
-  AccountCardStyledDescription, 
+  AccountCardStyledDescription,
   AccountCardStyledContainer,
 } from './AccountCard.styled';
 import MainButton from '../MainButton/MainButton';
@@ -53,6 +53,5 @@ const AccountCard = () => {
     </>
   );
 };
-
 
 export default AccountCard;
