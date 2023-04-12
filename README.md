@@ -105,6 +105,8 @@ OC-PROJET-13/
 ## Getting start
 
 This repo contains all the front-end and back-end code to run the BankArgent web app. 
+I'll provide the step by step to get start in an apple environment case.
+
 
 ### Prerequisites
 
@@ -112,35 +114,31 @@ This repo contains all the front-end and back-end code to run the BankArgent web
 - ![Npm][NpmBadge]
 - ![HomeBrew][HomeBrewBadge]
 
-I'll provide the step to get start in an apple environment case.
+<p align="right">(<a href="#readme-top">back to top</a>)</p> 
 
-1. Fork the repository
-2. Clone it on your computer
+#### Let's Go:
+**1.** Fork the repository
+**2.** Clone it on your computer
 ```sh
 git clone https://github.com/SuperSandrine/Project-13-Bank-API.git
 ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+#### Database
 
-### Database
+Mongo DB manage the database, in case of further problem, i used this ["how to"](https://ichi.pro/fr/comment-installer-mongodb-sur-mac-catalina-141283459760910) to install and launch the Database at the beginning of the project.
 
-
-Mongo DB manage the database, in case of further problem, i used this "[how to]("https://ichi.pro/fr/comment-installer-mongodb-sur-mac-catalina-141283459760910")" to install and launch the Database at the beginning of the project.
-
-
-
-3. then you can get in the ArgentBank-Back
+**3.** then you can get in the ArgentBank-Back
 ```sh
  cd ArgentBank-Back
 ```
 
-4. Install the dependencies with :
+**4.** Install the dependencies with :
 ```sh
  npm install
 ```
 
-5. Install the database:
-5. 1. Install Mongo-db:
+**5.** Install the database:
+  - 1. Install Mongo-db:
 ```sh
 brew tap mongodb/brew
 ```
@@ -150,7 +148,7 @@ brew install mongodb-community
 ```sh
 sudo mkdir -p /System/Volumes/Data/data/db
 ```
-5. 2. Give permission:
+  - 2. Give permission:
 ```sh
 sudo chown -R `id -un` /System/Volumes/Data/data/db
 ```
@@ -158,8 +156,7 @@ sudo chown -R `id -un` /System/Volumes/Data/data/db
 brew services run mongodb-community
 ```
 
-
-5. 3. Once installation is settled, you just have to:
+  - 3. Once installation is settled, you just have to:
 ```sh
 brew services list
 ```
@@ -167,14 +164,11 @@ Wait few seconds and you should see:
 `mongodb-community started`.
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-### Back-end
+#### Back-end
 
 Note that the Back-end get is own original Readme on the ArgentBank-Back File, as its a fork of the [repo here](https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API) .
 
-
-6. Run the back in another terminal:
+**6.** Run the back in another terminal:
 ```sh
  cd ArgentBank-Back
 ```
@@ -182,39 +176,36 @@ Note that the Back-end get is own original Readme on the ArgentBank-Back File, a
  npm run dev:server 
 ```
 Wait few seconds and you should see:
-`server started`.
+`[nodemon] starting 'node ./server/server.js'
+Server listening on http://localhost:3001
+Database successfully connected`
 
-
-7. Once server is running, you have to populate the database in a new terminal:
+**7.** Once server is running, you have to populate the database in a new terminal:
 ```sh
  cd ArgentBank-Back
 ```
 ```sh
  npm run populate-db 
 ```
-Wait few seconds and you should see:
-`blabla started`.
+Wait few seconds and you should see a lot of objects filled, ended with `... isAxiosError: true,
+  toJSON: [Function (anonymous)]}`
 
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-### Front-end
+#### Front-end
 
 Once you have your Backend running and your database is running and filled in, you can run the front:
 
-8. open a new terminal and :
+**8.** open a new terminal and :
 
 ```sh
  cd ArgentBank-Front
 ```
 
-9. Install the dependencies with:
+**9.** Install the dependencies with:
 ```sh
  npm install
 ```
 
-10. Run the front:
+**10.** Run the front:
 ```sh
 npm run dev
 ```
