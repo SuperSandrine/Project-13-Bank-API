@@ -1,6 +1,4 @@
 <a name="readme-top"></a>
-<br />
-
 <div align="center">
   <h1 align="center">Utilisez une API pour un compte utilisateur bancaire avec React</h1>
 
@@ -127,7 +125,7 @@ git clone https://github.com/SuperSandrine/Project-13-Bank-API.git
 ### Database
 
 
-Mongo DB manage the database, in case of further problem, i used this <a href: "https://ichi.pro/fr/comment-installer-mongodb-sur-mac-catalina-141283459760910" > "how to" </a> to install and launch the Database at the beginning of the project.
+Mongo DB manage the database, in case of further problem, i used this ["how to"]("https://ichi.pro/fr/comment-installer-mongodb-sur-mac-catalina-141283459760910") to install and launch the Database at the beginning of the project.
 
 
 
@@ -173,7 +171,7 @@ Wait few seconds and you should see:
 
 ### Back-end
 
-Note that the Back-end get is own original Readme on the ArgentBank-Back File, as its a fork of https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API.
+Note that the Back-end get is own original Readme on the ArgentBank-Back File, as its a fork of the [repo here](https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API) .
 
 
 6. Run the back in another terminal:
