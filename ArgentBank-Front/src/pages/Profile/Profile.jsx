@@ -19,7 +19,6 @@ const Profile = () => {
   useEffect(() => {
     if (!firstName) {
       const getProfileData = async () => {
-        console.log('je chasse le profil');
         const token = originalState.user.token;
         const body = {
           email: originalState.user.email,
@@ -30,7 +29,7 @@ const Profile = () => {
       };
       getProfileData();
     } else {
-      console.log('le profil existe déjà');
+      //console.log('le profil existe déjà');
     }
   }, [firstName, lastName]);
 

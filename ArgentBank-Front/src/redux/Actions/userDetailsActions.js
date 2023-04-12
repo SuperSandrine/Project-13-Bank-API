@@ -7,9 +7,6 @@ export const getUserDetails = createAsyncThunk(
   'user/getUserDetails', // le type creator
   async (userCredentials, { rejectWithValue }) => {
     const { keyToken, body } = userCredentials;
-    //console.log('token avant try', keyToken);
-    //console.log('body avant try ', body);
-    // TOUN FRANCOIS? pourquoi est-ce que il faut le body alors que sur postman il n'est pas necessaire?
     try {
       const response = await axios.post(profileUrl, body, {
         headers: { Authorization: `Bearer ${keyToken}` },

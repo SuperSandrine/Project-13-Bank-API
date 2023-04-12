@@ -5,7 +5,6 @@ const initialStateOfUser = {
   status: 'idle', // 'idle'|'pending'|'succeeded'|'failed'
   errorStatus: null,
   errorMessage: null,
-  //errorOtherMessage: null,
   email: null,
   password: null,
   token: null,
@@ -33,14 +32,12 @@ const userSlice = createSlice({
       state.password = action.meta.arg.password;
       state.errorStatus = null;
       state.errorMessage = null;
-      //state.errorOtherMessage = null;
     },
     [getLoggedUser.rejected]: (state, action) => {
-      console.log('ceci est action dans rejected', action);
+      //console.log('ceci est action dans rejected', action);
       state.status = 'failed';
       state.errorStatus = action.payload.status;
       state.errorMessage = action.payload.message;
-      //state.errorOtherMessage = action.payload.statusText;
     },
   },
 });

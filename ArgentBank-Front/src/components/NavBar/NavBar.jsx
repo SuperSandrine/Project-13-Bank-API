@@ -14,7 +14,6 @@ const handleSignOut = (e) => {
 
 const NavBar = () => {
   const originalState = useSelector((state) => state);
-  //console.log(originalState.user.status);
 
   return (
     <StyledNav>

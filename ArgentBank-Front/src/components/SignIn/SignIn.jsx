@@ -31,7 +31,7 @@ const SignIn = () => {
     }
 
     if (resp?.error?.message =="Rejected") {
-      console.log("le message error", resp.payload.data.message || resp.payload.statusText);
+      //console.log("le message error", resp.payload.data.message || resp.payload.statusText);
       setErrMsg(resp.payload.data.message || "API "+ resp.payload.statusText);
     } else {
       setSuccess(true);
