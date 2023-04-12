@@ -25,6 +25,5 @@ export const SubmitStyledButton = styled.button`
   background-color: white;
   font-weight: bold;
   text-align: center;
-  cursor: pointer;
   box-sizing: border-box;
 `;

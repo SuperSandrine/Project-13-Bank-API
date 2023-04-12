@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { InputStyledDiv } from './Input.styled';
-import { useEffect } from 'react';
-//import { original } from '@reduxjs/toolkit';
-//import { updateUserDetails } from '../../redux/Reducers/userDetailsSlice';
 import { updateUserDetails } from '../../redux/Actions/userDetailsActions';
 import { EditStyledForm, SubmitStyledButton } from './EditName.styled';
 
@@ -12,21 +10,13 @@ const EditName = (props) => {
   const dispatch = useDispatch();
   const [firstName, setFirstName] = useState(state.userDetails.firstName);
   const [lastName, setLastName] = useState(state.userDetails.lastName);
-  //const [Data, setData] = useState();
-  //console.log('state in editname', state);
-  //const { FirstName, LastName } = state.userDetails;
-  //console.log('prénom edit name', state.userDetails.firstName);
-  //console.log('props de edit', props);
   const { func } = props;
-  //console.log('que donne le props handle', func);
 
   const manageToUpdateNames = async () => {
     const token = state.user.token;
-    const body = { firstName: firstName, lastName: lastName}; //TODO faire un body dynamique
+    const body = { firstName: firstName, lastName: lastName };
     const updatedCredentials = { keyToken: token, body };
-    //const resp = 
     await dispatch(updateUserDetails(updatedCredentials));
-    //setData(resp);
   };
 
   const handleEditName = async (e) => {
@@ -57,17 +47,16 @@ const EditName = (props) => {
           </InputStyledDiv>
         </div>
         <div>
-          <SubmitStyledButton
-            type="submit"
-            //onClick={func} // ça marche car ça ferme la modale mais ça ne change plus le nom
-          >
-            Save
-          </SubmitStyledButton>
+          <SubmitStyledButton type="submit">Save</SubmitStyledButton>
           <SubmitStyledButton onClick={func}>Cancel</SubmitStyledButton>
         </div>
       </EditStyledForm>
     </div>
   );
+};
+
+EditName.propTypes = {
+  func: PropTypes.func,
 };
 
 export default EditName;

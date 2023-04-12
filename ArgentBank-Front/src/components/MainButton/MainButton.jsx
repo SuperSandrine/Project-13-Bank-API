@@ -1,11 +1,12 @@
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { MainButtonStyled } from './MainButton.styled';
 
 const MainButton = (props) => {
-  //console.log("************* props de button", props)
   return <MainButtonStyled {...props}>{props.children}</MainButtonStyled>;
 };
 
-MainButton.propTypes = {};
+MainButton.propTypes = {
+  children: PropTypes.node, // type node= contenu jsx comme texte, composants, ...
+};
 
 export default MainButton;

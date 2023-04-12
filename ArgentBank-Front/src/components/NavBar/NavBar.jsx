@@ -20,7 +20,6 @@ const NavBar = () => {
     <StyledNav>
       <StyledNavLogoLink to="/">
         <img src={logo} alt="Argent Bank Logo" />
-        <h1 className="sr-only">Argent Bank</h1>
       </StyledNavLogoLink>
 
       {originalState?.userDetails?.firstName ? (
@@ -44,8 +43,5 @@ const NavBar = () => {
     </StyledNav>
   );
 };
-
-// OK : TOUN FRANCOIS: c'est quoi sr-only, screen reader only, comment c'est exploité? c'est du vieux css. mauvaise pratique à modifier
-// TODO: supprimer les sronly et proposer qqchose de plus adapter à l'accessibilité d'aujourdhui
 
 export default NavBar;

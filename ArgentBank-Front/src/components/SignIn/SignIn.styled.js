@@ -26,3 +26,10 @@ export const SignInStyledInputContainer = styled.div`
     font-size: 1.2rem;
   }
 `;
+
+export const SignInStyledInputRememberDiv = styled.div`
+  display: flex;
+  label {
+    margin-left: 0.25rem;
+  }
+`;

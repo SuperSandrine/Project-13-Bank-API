@@ -6,7 +6,6 @@ import {
   AccountCardStyledDescription, 
   AccountCardStyledContainer,
 } from './AccountCard.styled';
-//import { MainButtonStyled } from '../MainButton/MainButton.styled';
 import MainButton from '../MainButton/MainButton';
 import { useSelector } from 'react-redux';
 
@@ -54,6 +53,6 @@ const AccountCard = () => {
     </>
   );
 };
-// FRANcOIS pourquoi ça ne prends pas les classnames de mainButton, mais qu eça prends les classname de AccountCardStylesSection
+
 
 export default AccountCard;

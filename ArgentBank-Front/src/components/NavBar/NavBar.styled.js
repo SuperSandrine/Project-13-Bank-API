@@ -6,18 +6,13 @@ export const StyledNav = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 5px 20px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 `;
 
 export const StyledNavLink = styled(Link)`
   text-decoration: none;
   margin-right: 0.5rem;
+  font-weight: bold;
+  color: #2c3e50;
   &:hover {
     text-decoration: underline;
   }

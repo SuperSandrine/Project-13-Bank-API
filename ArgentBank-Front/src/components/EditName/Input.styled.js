@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const InputStyledDiv = styled.div`
   display: flex;
-  // flex-direction: column;
   text-align: left;
   justify content: center
   margin-bottom: 1rem;

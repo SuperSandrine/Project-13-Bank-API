@@ -15,25 +15,16 @@ export const AccountCardStyledSection = styled.section`
   margin-bottom: 2rem;
   margin-top: 2rem;
 
-  .transaction-button {
-    width: 100%;
-  }
-
   @media (min-width: 720px) {
     flex-direction: row;
 
     .cta {
       flex: 0;
     }
-
-    .transaction-button {
-      width: 200px;
-    }
   }
 `;
 export const AccountCardStyledContainer = styled.div`
   width: 100%;
-  //flex: 1, 1, 0%;
 `;
 
 export const AccountCardStyledTitle = styled.h3`

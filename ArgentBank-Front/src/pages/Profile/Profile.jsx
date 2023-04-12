@@ -6,19 +6,17 @@ import NavBar from '../../components/NavBar/NavBar';
 import MainButton from '../../components/MainButton/MainButton';
 import AccountCard from '../../components/AccountCard/AccountCard';
 import EditName from '../../components/EditName/Editname';
-import { LoginStyledMain } from '../Login/Login.styled';
+import { LoginStyledH1, LoginStyledMain } from '../Login/Login.styled';
 import { getUserDetails } from '../../redux/Actions/userDetailsActions';
 
 const Profile = () => {
   const originalState = useSelector((state) => state);
   const dispatch = useDispatch();
-  //const [profileData, setProfileData] = useState(null);
   const [editFormDisplayed, setEditFormDisplayed] = useState(false);
   const { firstName, lastName } = originalState.userDetails;
 
   //_____________________
   // permet d'utiliser de l'asynchrone dans un composant react
-  // DONE = TODO mettre le body dynamique
   useEffect(() => {
     if (!firstName) {
       const getProfileData = async () => {
@@ -46,7 +44,6 @@ const Profile = () => {
     e.preventDefault();
     setEditFormDisplayed(true);
   };
-
   const handleCancelClick = (e) => {
     e.preventDefault();
     //console.log('je ferme la modale');
@@ -55,13 +52,13 @@ const Profile = () => {
 
   return (
     <div>
-      <div className="test">
+      <div className="shape">
         <NavBar />
 
-        <LoginStyledMain className="main bg-dark">
+        <LoginStyledMain >
           {originalState?.userDetails?.id ? (
             <>
-              <h1 className="header">
+              <LoginStyledH1>
                 Welcome back
                 <br />
                 {!editFormDisplayed && (
@@ -70,12 +67,7 @@ const Profile = () => {
                       {' '}
                       {firstName} {lastName}!
                     </div>
-                    <MainButton
-                      className="large-button title"
-                      onClick={handleEdit}
-                    >
-                      Edit Name
-                    </MainButton>
+                    <MainButton onClick={handleEdit}>Edit Name</MainButton>
                   </div>
                 )}
                 {editFormDisplayed && (
@@ -83,11 +75,11 @@ const Profile = () => {
                     <EditName func={handleCancelClick} />
                   </div>
                 )}
-              </h1>
+              </LoginStyledH1>
               <AccountCard />
             </>
           ) : (
-            <h1 className="header">You have to Sign In</h1>
+            <LoginStyledH1>You have to Sign In</LoginStyledH1>
           )}
         </LoginStyledMain>
 

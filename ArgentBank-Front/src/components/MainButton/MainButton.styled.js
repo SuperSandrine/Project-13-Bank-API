@@ -1,5 +1,3 @@
-// OK TOUN Francois: pourquoi des fois c'est jsx, et des fois c'est js ?, ça marche avec les deux, toutefois jsx va présenter une réponse légèrement plus rapide (ce sont des choses qu'on peut étudier)
-
 import styled from 'styled-components';
 
 export const MainButtonStyled = styled.button`
@@ -11,22 +9,16 @@ export const MainButtonStyled = styled.button`
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
-  //margin: auto;
   margin-left: auto;
   margin-right: auto;
-  cursor: pointer;
-  .title {
-    margin-top: 15px;
-  }
-  .large-button {
-    width: 100%;
-  }
-  .transaction-button {
+  width: ${(props) => (props.$large ? '100%' : 'none')};
+
+  &.transaction-button {
     width: 100%;
   }
 
   @media (min-width: 720px) {
-    .transaction-button {
+    &.transaction-button {
       width: 200px;
     }
   }
