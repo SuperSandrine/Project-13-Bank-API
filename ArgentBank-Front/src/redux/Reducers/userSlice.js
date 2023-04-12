@@ -15,7 +15,6 @@ const userSlice = createSlice({
   initialState: initialStateOfUser,
   reducers: {
     terminateUser: (state) => {
-      //{type:"user/termination", payload: 1(identifiant)}
       state = initialStateOfUser;
       return state;
     },
@@ -43,7 +42,6 @@ const userSlice = createSlice({
 });
 
 //console.log('a quoi ressemble user Slice', userSlice);
-
 export default userSlice.reducer; //va exporter uniquement les reducers du Slice.
 
 // actions creator automatique de toolkit

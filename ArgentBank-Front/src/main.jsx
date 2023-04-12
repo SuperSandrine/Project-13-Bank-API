@@ -10,10 +10,8 @@ import './styles/index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* <AuthProvider> */}
     <Provider store={store}>
       <RouterProvider router={Router} />
     </Provider>
-    {/* </AuthProvider> */}
   </React.StrictMode>
 );

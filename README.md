@@ -44,7 +44,7 @@ With the support of mokup on the designs files, and the back-end provided, I cod
 
 - [![Vite in a badge][ViteBadge]](https://vitejs.dev/)
 - ![React in a badge][ReactBadge]
-- ![Reduc in badge][ReduxBadge]
+- ![Redux in badge][ReduxBadge]
 - ![StyledComponents in badge][StyledComponentsBadge]
 - ![ VS in a badge][VisualStudioBadge]
 - ![ Git in a badge][GitBadge]

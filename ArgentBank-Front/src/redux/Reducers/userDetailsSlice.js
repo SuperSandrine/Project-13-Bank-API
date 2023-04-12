@@ -18,14 +18,6 @@ const initialStateOfUserDetails = {
 const userDetailsSlice = createSlice({
   name: 'userDetails',
   initialState: initialStateOfUserDetails,
-  // reducers: {
-  //   updateFirstName: (state, action) => {
-  //     // change l'état avec la valeur input si appuie sur save
-  //   },
-  //   updateLastName: () => {
-  //     // change l'état avec la valeur input si appuie sur save
-  //   },
-  // },
   extraReducers: {
     [getUserDetails.pending]: (state) => {
       state.statusD = 'pending';
@@ -64,8 +56,4 @@ const userDetailsSlice = createSlice({
 });
 
 //console.log('a quoi ressemble userDetails Slice', userDetailsSlice);
-
 export default userDetailsSlice.reducer; //va exporter uniquement les reducers du Slice.
-
-// actions creator automatique de toolkit
-//export const { updateFirstName, updateLastName } = userDetailsSlice.actions;
