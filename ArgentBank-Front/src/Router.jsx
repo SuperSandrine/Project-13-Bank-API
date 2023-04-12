@@ -1,6 +1,5 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import App from './App';
 
 import ErrorPage from './pages/Error/ErrorPage';
 import Home from './pages/Home/Home';
@@ -32,11 +31,6 @@ const Router = createBrowserRouter([
   {
     path: '/transactions',
     element: <Transactions />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/app',
-    element: <App />,
     errorElement: <ErrorPage />,
   },
   {
