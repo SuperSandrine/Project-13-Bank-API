@@ -70,7 +70,7 @@ OC-PROJET-13/
 |  |- ... (elements as issues to complete or fix)
 |
 |-SportSee-back/
-|  |- ... (element for Back from the repo :  <a href="https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API">P10-Argent-Bank-API</a>)
+|  |- ... (element for Back from the repo : P10-Argent-Bank-API)
 |
 |-SportSee-front/
 |  |- ...
@@ -127,7 +127,7 @@ git clone https://github.com/SuperSandrine/Project-13-Bank-API.git
 ### Database
 
 
-Mongo DB manage the database, in case of further problem, i used this <a href:"https://ichi.pro/fr/comment-installer-mongodb-sur-mac-catalina-141283459760910">"how to"</a> to install and launch the Database at the beginning of the project.
+Mongo DB manage the database, in case of further problem, i used this <a href: "https://ichi.pro/fr/comment-installer-mongodb-sur-mac-catalina-141283459760910" > "how to" </a> to install and launch the Database at the beginning of the project.
 
 
 
@@ -172,6 +172,8 @@ Wait few seconds and you should see:
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Back-end
+
+Note that the Back-end get is own original Readme on the ArgentBank-Back File, as its a fork of https://github.com/OpenClassrooms-Student-Center/Project-10-Bank-API.
 
 
 6. Run the back in another terminal:
@@ -252,15 +254,12 @@ Enjoy !
 [HtmlBadge]: https://img.shields.io/badge/Language-html-orange
 [ReactBadge]: https://img.shields.io/badge/Library-React-mediumaquamarine
 [ReduxBadge]: https://img.shields.io/badge/Library-Redux-blueviolet
-[StyledComponentsBadge]: https://img.shields.io/badge/Library-StyledComponents-lightsalmon
+[StyledComponentsBadge]: https://img.shields.io/badge/Library-StyledComponents-coral
 [VisualStudioBadge]: https://img.shields.io/badge/IDE-VisualStudio-steelblue
 [ViteBadge]: https://img.shields.io/badge/Frontend%20Tooling-Vite-orchid
 [GitBadge]: https://img.shields.io/badge/Versionning-Git-orangered
 [GitHubBadge]: https://img.shields.io/badge/Versionning-GitHub-black
 [NodeBadge]: https://img.shields.io/badge/Node-v%2014.21.1-forestgreen
 [NpmBadge]: https://img.shields.io/badge/Npm-v%206.14.17-firebrick
-[HomeBrewBadge]: https://img.shields.io/badge/HomeBrew-v%204.0.6-gold
+[HomeBrewBadge]: https://img.shields.io/badge/HomeBrew-v%204.0.6-darkgoldenrod
 
-```
-
-```
