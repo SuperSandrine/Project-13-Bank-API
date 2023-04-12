@@ -125,7 +125,7 @@ git clone https://github.com/SuperSandrine/Project-13-Bank-API.git
 ### Database
 
 
-Mongo DB manage the database, in case of further problem, i used this ["how to"]("https://ichi.pro/fr/comment-installer-mongodb-sur-mac-catalina-141283459760910") to install and launch the Database at the beginning of the project.
+Mongo DB manage the database, in case of further problem, i used this "[how to]("https://ichi.pro/fr/comment-installer-mongodb-sur-mac-catalina-141283459760910")" to install and launch the Database at the beginning of the project.
 
 
 
