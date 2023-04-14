@@ -117,8 +117,11 @@ paths:
         - Bearer: []
       tags:
       - "Transactions Module"
-      summary: "all transactions"
-      description: "get and display all transactions"
+      summary: "get all transactions"
+      description: "Get in the purpose to display all transactions, with authorization from login, and optional parameters.
+      
+      Parameters might allowed more flexibility in future display layout and functionnalities of the app with less endpoints at the begining of the API.
+      In this way, the user is connected with his token, when he clicked in a transaction button, he sent the account number through it, also the fct date() might called only the current month operations in adding this parameter to the path this way '...user/transactions?account={account_name}&currentMonth={month}'. "
       operationId: "getTransactions"
       consumes:
       - "application/json"
@@ -132,17 +135,37 @@ paths:
         type: "string"
       - name: "account"
         in : "query"
-        description: "account name optional"
+        description: "account name optional, contain 6 numbers and 3 alphabetical letters"
         type: "string"
+        pattern: "^[0-9]{6}[a-zA-Z]{3}$"
       - name: "currentMonth"
         in : "query"
         description: "current Month transactions optional"
         type: "string"
+        enum: 
+        - "january"
+        - "february"
+        - "march"
+        - "april"
+        - "mai"
+        - "june"
+        - "july"
+        - "august"
+        - "september"
+        - "october"
+        - "november"
+        - "december"
       responses:
         "200":
           description: "successfully obtained transactions."
           schema:
-            $ref: '#/definitions/TransactionsResponse'
+            type: "array"
+            items: 
+              $ref: '#/definitions/TransactionResponse'
+        "204":
+          description: "No content found"
+        "206":
+          description: "Partial content found"
         "400":
           description: "Bad or error in the Request"
         "401":
@@ -158,8 +181,8 @@ paths:
         - Bearer: []
       tags:
       - "Transactions Module"
-      summary: "Display transaction"
-      description: "Display one transaction's details"
+      summary: "display transaction's details"
+      description: "Display one transaction's details from the transactions id providen"
       operationId: "displayDetailsTransaction"
       consumes:
       - "application/json"
@@ -195,8 +218,8 @@ paths:
         - Bearer: []
       tags:
       - "Transactions Module"
-      summary: "Update transaction"
-      description: "Update transaction's details"
+      summary: "Update transaction's details"
+      description: "Update few transaction's details as category or note, with a maximum characters number"
       operationId: "updateDetailsTransaction"
       consumes:
       - "application/json"
@@ -323,7 +346,7 @@ definitions:
         type: string
       lastName:
         type: string
-  TransactionsResponse:
+  TransactionResponse:
     type: "object"
     properties:
       id:
@@ -366,5 +389,7 @@ definitions:
     properties:
       category:
         type: "string"
+        maximum: 20
       notes:
         type: "string"
+        maximum: 120

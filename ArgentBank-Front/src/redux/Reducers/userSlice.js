@@ -33,9 +33,9 @@ const userSlice = createSlice({
       state.errorMessage = null;
     },
     [getLoggedUser.rejected]: (state, action) => {
-      //console.log('ceci est action dans rejected', action);
+      console.log('ceci est action dans rejected', action);
       state.status = 'failed';
-      state.errorStatus = action.payload.status;
+      state.errorStatus = action.payload.status || action.payload.code;
       state.errorMessage = action.payload.message;
     },
   },

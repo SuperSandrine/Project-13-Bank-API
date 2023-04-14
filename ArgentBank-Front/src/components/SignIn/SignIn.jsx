@@ -26,11 +26,21 @@ const SignIn = () => {
     }
 
     if (resp?.error?.message =="Rejected") {
-      //console.log("le message error", resp.payload.data.message || resp.payload.statusText);
-      setErrMsg(resp.payload.data.message || "API "+ resp.payload.statusText);
+      //console.log("le message error 0", resp);
+      //console.log("le message error", resp.payload.message);
+      //setErrMsg("c'est cassé");
+
+      if (resp?.payload.code == "ERR_NETWORK"){
+        setErrMsg(resp.payload.message);
+      } else if(resp?.payload?.response?.data?.status == 400){
+        setErrMsg(resp?.payload?.response?.data?.message );
+      } else if(resp?.payload?.response?.status == 404 ){
+        setErrMsg("API Login " + resp?.payload?.response?.statusText);
+      } else if(resp?.payload?.response?.status == 500 ){
+        setErrMsg("API Login " + resp?.payload?.response?.statusText);}
+
     } else {
       setSuccess(true);
-      //return resp.payload.data;
     }
   };
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
+import { useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import NavBar from '../../components/NavBar/NavBar';
 import MainButton from '../../components/MainButton/MainButton';
@@ -13,11 +13,14 @@ const Profile = () => {
   const originalState = useSelector((state) => state);
   const dispatch = useDispatch();
   const [editFormDisplayed, setEditFormDisplayed] = useState(false);
+  const navig = useNavigate();
   const { firstName, lastName } = originalState.userDetails;
 
   // permet d'utiliser de l'asynchrone dans un composant react
   useEffect(() => {
-    if (!firstName) {
+    if (!originalState.user.email) {
+      redirectToLogin();
+    } else if (!firstName) {
       const getProfileData = async () => {
         const token = originalState.user.token;
         const body = {
@@ -33,9 +36,6 @@ const Profile = () => {
     }
   }, [firstName, lastName]);
 
-  // quand je clique,
-  // je fais apparaitre le form et
-  // je fais disparaître le bouton
   const handleEdit = (e) => {
     e.preventDefault();
     setEditFormDisplayed(true);
@@ -43,6 +43,9 @@ const Profile = () => {
   const handleCancelClick = (e) => {
     e.preventDefault();
     setEditFormDisplayed(false);
+  };
+  const redirectToLogin = () => {
+    navig('/login');
   };
 
   return (
@@ -74,7 +77,7 @@ const Profile = () => {
               <AccountCard />
             </>
           ) : (
-            <LoginStyledH1>You have to Sign In</LoginStyledH1>
+            <LoginStyledH1>Wait, you&apos;re being redirected</LoginStyledH1>
           )}
         </LoginStyledMain>
 

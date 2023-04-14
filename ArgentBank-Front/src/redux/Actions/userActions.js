@@ -16,11 +16,8 @@ export const getLoggedUser = createAsyncThunk(
         return response;
       })
       .catch((err) => {
-        console.log('il y a une erreur dans lappel API Login', err.response);
-        // dans le retour de err.response on a du détail dans "data" en cas d'erreur de password ou d'id.
-        // par contre on a aussi besoin des err.response de stattus et statusText qui nous permette d'avoir l'erreur en cas non communication avec le serveur
-        // TODO = redux ne donne pas le détail de data ou alors je ne sais pas comment le récupérer
-        return rejectWithValue(err.response);
+        console.log('il y a une erreur dans lappel API Login', err);
+        return rejectWithValue(err);
       });
   }
 );

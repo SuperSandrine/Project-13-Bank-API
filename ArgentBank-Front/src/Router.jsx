@@ -7,37 +7,19 @@ import Login from './pages/Login/Login';
 import Profile from './pages/Profile/Profile';
 import Transactions from './pages/Transactions/Transactions';
 
+const createRoute = (path, element) => ({
+  path,
+  element,
+  errorElement: <ErrorPage />,
+});
+
 const Router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Home />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/home',
-    element: <Home />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/login',
-    element: <Login />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/profile',
-    element: <Profile />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/transactions',
-    element: <Transactions />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/*',
-    element: <ErrorPage />,
-    errorElement: <ErrorPage />,
-  },
+  createRoute('/', <Home />),
+  createRoute('/home', <Home />),
+  createRoute('/login', <Login />),
+  createRoute('/profile', <Profile />),
+  createRoute('/transactions', <Transactions />),
+  createRoute('/*', <ErrorPage />),
 ]);
 
 export default Router;

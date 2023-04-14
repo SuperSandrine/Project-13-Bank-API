@@ -11,6 +11,7 @@ export const StyledNav = styled.nav`
 export const StyledNavLink = styled(Link)`
   text-decoration: none;
   margin-right: 0.5rem;
+  margin-left: 0.3rem;
   font-weight: bold;
   color: #2c3e50;
   &:hover {
@@ -24,5 +25,10 @@ export const StyledNavLogoLink = styled(Link)`
   img {
     max-width: 100%;
     width: 200px;
+  }
+  @media (max-width: 420px) {
+    img {
+      width: 150px;
+    }
   }
 `;
